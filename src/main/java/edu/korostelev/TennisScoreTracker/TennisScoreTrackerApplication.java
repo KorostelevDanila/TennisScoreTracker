@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan(basePackages= "edu/korostelev/TennisScoreTracker/models")
+@EntityScan(basePackages= "edu/korostelev/TennisScoreTracker/model")
 public class TennisScoreTrackerApplication {
 
 	public static void main(String[] args) {
