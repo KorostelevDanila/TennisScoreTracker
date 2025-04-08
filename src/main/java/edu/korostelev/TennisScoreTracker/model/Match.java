@@ -1,4 +1,4 @@
-package edu.korostelev.TennisScoreTracker.models;
+package edu.korostelev.TennisScoreTracker.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
