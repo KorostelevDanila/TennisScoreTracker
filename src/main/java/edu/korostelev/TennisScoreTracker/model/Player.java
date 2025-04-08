@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
 @Table(schema = "tennis-scoreboard", name="players")
 public class Player {
     @Id
@@ -20,4 +18,27 @@ public class Player {
             length = 50
     )
     private String name;
+
+    public Player(String name) {
+        this.name = name;
+    }
+
+    public Player() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

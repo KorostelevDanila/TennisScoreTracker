@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import java.util.HashMap;
 
-@Data
 public class CurrentMatch {
     private Integer firstPlayerId;
     private Integer secondPlayerId;
@@ -28,4 +27,43 @@ public class CurrentMatch {
         points.put(secondPlayerId, 0);
     }
 
+    public Integer getFirstPlayerId() {
+        return firstPlayerId;
+    }
+
+    public void setFirstPlayerId(Integer firstPlayerId) {
+        this.firstPlayerId = firstPlayerId;
+    }
+
+    public Integer getSecondPlayerId() {
+        return secondPlayerId;
+    }
+
+    public void setSecondPlayerId(Integer secondPlayerId) {
+        this.secondPlayerId = secondPlayerId;
+    }
+
+    public HashMap<Integer, Integer> getSets() {
+        return sets;
+    }
+
+    public void setSets(HashMap<Integer, Integer> sets) {
+        this.sets = sets;
+    }
+
+    public HashMap<Integer, Integer> getGames() {
+        return games;
+    }
+
+    public void setGames(HashMap<Integer, Integer> games) {
+        this.games = games;
+    }
+
+    public HashMap<Integer, Integer> getPoints() {
+        return points;
+    }
+
+    public void setPoints(HashMap<Integer, Integer> points) {
+        this.points = points;
+    }
 }
