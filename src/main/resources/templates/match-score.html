@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create Match</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<h1>Текущий матч</h1>
+
+<div>
+  <div>
+    <p>идентификатор матча: <p th:text="${uuid}">идентификатор</p> </p>
+    <p>идентификатор первого игрока: <p th:text="${match.firstPlayerId}">идентификатор</p> </p>
+    <p>идентификатор второго игрока: <p th:text="${match.secondPlayerId}">идентификатор</p> </p>
+  </div>
+</div>
+</body>
+
+</html>
