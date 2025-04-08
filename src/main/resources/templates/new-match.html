@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Create Match</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+
+    <body>
+        <h1>Создание матча</h1>
+
+        <div>
+            <div>
+                <form th:action="@{/new-match}"  method="post">
+                    <label>Имя первого игрока</label>
+                    <input type="text" name="firstPlayerName">
+                    <label>Имя второго игрока</label>
+                    <input type="text" name="secondPlayerName">
+                    <button type="submit">Создать</button>
+                </form>
+            </div>
+        </div>
+    </body>
+
+</html>
