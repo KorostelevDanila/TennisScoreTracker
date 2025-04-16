@@ -5,13 +5,13 @@ import edu.korostelev.TennisScoreTracker.model.Player;
 import edu.korostelev.TennisScoreTracker.service.CurrentMatchesService;
 import edu.korostelev.TennisScoreTracker.service.PlayersService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/match-score")
@@ -26,12 +26,12 @@ public class MatchScoreController {
 
     @GetMapping
     public String getMatchScore(
-            @RequestParam("uuid") Integer uuid,
+            @RequestParam("uuid") String uuid,
             ModelMap modelMap
     ) {
-        CurrentMatch currentMatch = matchesService.getCurrentMatch(uuid);
-        Optional<Player> firstPlayer = playersService.findById(currentMatch.getFirstPlayerId());
-        Optional<Player> secondPlayer = playersService.findById(currentMatch.getSecondPlayerId());
+        CurrentMatch currentMatch = currentMatchesService.getCurrentMatch(UUID.fromString(uuid));
+        Optional<Player> firstPlayer = playersService.findById(currentMatch.getFirstPlayer().getId());
+        Optional<Player> secondPlayer = playersService.findById(currentMatch.getSecondPlayer().getId());
 
         modelMap.addAttribute("uuid", uuid);
         modelMap.addAttribute("match", currentMatch);
