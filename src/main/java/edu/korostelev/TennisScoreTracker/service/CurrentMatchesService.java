@@ -2,24 +2,24 @@ package edu.korostelev.TennisScoreTracker.service;
 
 import edu.korostelev.TennisScoreTracker.model.CurrentMatch;
 import edu.korostelev.TennisScoreTracker.model.Player;
-import edu.korostelev.TennisScoreTracker.repository.PlayersRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
-public class MatchesService {
-    private final HashMap<Integer, CurrentMatch> matches = new HashMap<>();
+public class CurrentMatchesService {
+    private final HashMap<UUID, CurrentMatch> matches = new HashMap<>();
 
     private final PlayersService playersService;
 
-    public MatchesService(PlayersService playersService) {
+    public CurrentMatchesService(PlayersService playersService) {
         this.playersService = playersService;
     }
 
     //TODO implement generation of unique id for matches
-    public Integer createMatch(String firstPlayerName, String secondPlayerName) {
+    public UUID createMatch(String firstPlayerName, String secondPlayerName) {
         Optional<Player> firstPlayer = playersService.findByName(firstPlayerName);
         Optional<Player> secondPlayer = playersService.findByName(secondPlayerName);
 
@@ -30,16 +30,20 @@ public class MatchesService {
             secondPlayer = playersService.savePlayer(secondPlayerName);
         }
 
-        int matchId = 0;
+        UUID matchId;
+
+        do {
+            matchId = UUID.randomUUID();
+        } while (matches.containsKey(matchId));
 
         matches.put(matchId,
-                new CurrentMatch(firstPlayer.get().getId(), secondPlayer.get().getId())
+                new CurrentMatch(firstPlayer.get(), secondPlayer.get())
         );
 
         return matchId;
     }
 
-    public CurrentMatch getCurrentMatch(Integer currentMatchId) {
+    public CurrentMatch getCurrentMatch(UUID currentMatchId) {
         return matches.get(currentMatchId);
     }
 }

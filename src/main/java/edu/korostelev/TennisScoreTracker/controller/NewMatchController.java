@@ -1,6 +1,6 @@
 package edu.korostelev.TennisScoreTracker.controller;
 
-import edu.korostelev.TennisScoreTracker.service.MatchesService;
+import edu.korostelev.TennisScoreTracker.service.CurrentMatchesService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.UUID;
+
 @Controller
 @RequestMapping("/new-match")
 public class NewMatchController {
-    private final MatchesService matchesService;
+    private final CurrentMatchesService currentMatchesService;
 
-    public NewMatchController(MatchesService matchesService) {
-        this.matchesService = matchesService;
+    public NewMatchController(CurrentMatchesService currentMatchesService) {
+        this.currentMatchesService = currentMatchesService;
     }
 
     @GetMapping
@@ -28,8 +30,8 @@ public class NewMatchController {
             @RequestParam String secondPlayerName,
             RedirectAttributes redirectAttributes
     ) {
-        Integer createdMatchId = matchesService.createMatch(firstPlayerName, secondPlayerName);
-        redirectAttributes.addAttribute("uuid", createdMatchId);
+        UUID createdMatchId = currentMatchesService.createMatch(firstPlayerName, secondPlayerName);
+        redirectAttributes.addAttribute("uuid", createdMatchId.toString());
         return "redirect:/match-score";
     }
 }
