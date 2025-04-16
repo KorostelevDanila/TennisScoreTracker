@@ -2,7 +2,7 @@ package edu.korostelev.TennisScoreTracker.controller;
 
 import edu.korostelev.TennisScoreTracker.model.CurrentMatch;
 import edu.korostelev.TennisScoreTracker.model.Player;
-import edu.korostelev.TennisScoreTracker.service.MatchesService;
+import edu.korostelev.TennisScoreTracker.service.CurrentMatchesService;
 import edu.korostelev.TennisScoreTracker.service.PlayersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +16,11 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/match-score")
 public class MatchScoreController {
-    private final MatchesService matchesService;
+    private final CurrentMatchesService currentMatchesService;
     private final PlayersService playersService;
 
-    public MatchScoreController(MatchesService matchesService, PlayersService playersService) {
-        this.matchesService = matchesService;
+    public MatchScoreController(CurrentMatchesService currentMatchesService, PlayersService playersService) {
+        this.currentMatchesService = currentMatchesService;
         this.playersService = playersService;
     }
 
