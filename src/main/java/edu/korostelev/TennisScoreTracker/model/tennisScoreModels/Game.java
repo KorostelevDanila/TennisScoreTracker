@@ -34,19 +34,9 @@ public class Game implements Winnable {
     private void checkTieSituations(Player winner) {
         if (firstPlayerScore == secondPlayerScore) {
             SCORE_VALUES sameScoreValue = firstPlayerScore;
-            if (sameScoreValue == SCORE_VALUES.DEUCE) {
-                if (winner.getId().equals(firstPlayer.getId())) {
-                    firstPlayerScore = SCORE_VALUES.ADVANTAGE;
-                } else if (winner.getId().equals(secondPlayer.getId())) {
-                    secondPlayerScore = SCORE_VALUES.ADVANTAGE;
-                }
-            }
             if (sameScoreValue == SCORE_VALUES.ADVANTAGE) {
-                if (winner.getId().equals(firstPlayer.getId())) {
-                    firstPlayerScore = SCORE_VALUES.DEUCE;
-                } else if (winner.getId().equals(secondPlayer.getId())) {
-                    secondPlayerScore = SCORE_VALUES.DEUCE;
-                }
+                firstPlayerScore = SCORE_VALUES.DEUCE;
+                secondPlayerScore = SCORE_VALUES.DEUCE;
             }
         }
     }
