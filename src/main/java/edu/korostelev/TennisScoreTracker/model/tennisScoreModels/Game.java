@@ -22,7 +22,7 @@ public class Game implements Winnable {
 
     @Override
     public Optional<Player> winnedBy(Player winner) {
-        checkTieSituations(winner);
+        checkTieSituations();
 
         addScoreToWinner(winner);
 
@@ -31,7 +31,7 @@ public class Game implements Winnable {
         return getWinnerIfPresent();
     }
 
-    private void checkTieSituations(Player winner) {
+    private void checkTieSituations() {
         if (firstPlayerScore == secondPlayerScore) {
             SCORE_VALUES sameScoreValue = firstPlayerScore;
             if (sameScoreValue == SCORE_VALUES.ADVANTAGE) {
