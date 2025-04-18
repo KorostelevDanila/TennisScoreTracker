@@ -22,6 +22,7 @@ public class CurrentMatch implements Winnable {
         this.secondPlayer = secondPlayer;
         firstPlayerScore = 0;
         secondPlayerScore = 0;
+        startSet();
     }
 
     private void startSet() {
