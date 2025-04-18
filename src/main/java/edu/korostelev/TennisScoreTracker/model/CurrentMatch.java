@@ -1,69 +1,54 @@
 package edu.korostelev.TennisScoreTracker.model;
 
+import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.Set;
+import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.interfaces.Winnable;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashMap;
+import java.util.Optional;
 
-public class CurrentMatch {
-    private Integer firstPlayerId;
-    private Integer secondPlayerId;
-    private HashMap<Integer, Integer> sets;
-    private HashMap<Integer, Integer> games;
-    private HashMap<Integer, Integer> points;
+public class CurrentMatch implements Winnable {
+    private final Player firstPlayer;
+    private final Player secondPlayer;
+    private Set currentSet;
+    private int firstPlayerScore;
+    private int secondPlayerScore;
+    private final int SETS_TO_WIN = 2;
 
-    public CurrentMatch(int firstPlayerId, int secondPlayerId) {
-        this.firstPlayerId = firstPlayerId;
-        this.secondPlayerId = secondPlayerId;
-        sets = new HashMap<>();
-        sets.put(firstPlayerId, 0);
-        sets.put(secondPlayerId, 0);
-        games = new HashMap<>();
-        games.put(firstPlayerId, 0);
-        games.put(secondPlayerId, 0);
-        points = new HashMap<>();
-        points.put(firstPlayerId, 0);
-        points.put(secondPlayerId, 0);
+    public CurrentMatch(Player firstPlayer, Player secondPlayer) {
+        this.firstPlayer = firstPlayer;
+        this.secondPlayer = secondPlayer;
+        firstPlayerScore = 0;
+        secondPlayerScore = 0;
     }
 
-    public Integer getFirstPlayerId() {
-        return firstPlayerId;
+    private void startSet() {
+        currentSet = new Set(firstPlayer, secondPlayer);
     }
 
-    public void setFirstPlayerId(Integer firstPlayerId) {
-        this.firstPlayerId = firstPlayerId;
-    }
+    @Override
+    public Optional<Player> winnedBy(Player winner) {
+        Optional<Player> matchWinner = Optional.empty();
+        Optional<Player> setWinner = currentSet.winnedBy(winner);
 
-    public Integer getSecondPlayerId() {
-        return secondPlayerId;
-    }
+        if (setWinner.isPresent()) {
+            if (setWinner.get().equals(firstPlayer)) {
+                firstPlayerScore++;
+                if (firstPlayerScore == SETS_TO_WIN) {
+                    return Optional.of(firstPlayer);
+                }
+            } else if (setWinner.get().equals(secondPlayer)) {
+                if (secondPlayerScore == SETS_TO_WIN) {
+                    return Optional.of(secondPlayer);
+                }
+                secondPlayerScore++;
+            }
 
-    public void setSecondPlayerId(Integer secondPlayerId) {
-        this.secondPlayerId = secondPlayerId;
-    }
+            startSet();
+        }
 
-    public HashMap<Integer, Integer> getSets() {
-        return sets;
-    }
-
-    public void setSets(HashMap<Integer, Integer> sets) {
-        this.sets = sets;
-    }
-
-    public HashMap<Integer, Integer> getGames() {
-        return games;
-    }
-
-    public void setGames(HashMap<Integer, Integer> games) {
-        this.games = games;
-    }
-
-    public HashMap<Integer, Integer> getPoints() {
-        return points;
-    }
-
-    public void setPoints(HashMap<Integer, Integer> points) {
-        this.points = points;
+        return Optional.empty();
     }
 }
