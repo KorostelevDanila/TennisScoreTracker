@@ -1,5 +1,7 @@
 package edu.korostelev.TennisScoreTracker.model.tennisScoreModels.enums;
 
+import java.util.ResourceBundle;
+
 public enum SCORE_VALUES {
     LOVE,
     FIFTEEN,
@@ -8,6 +10,8 @@ public enum SCORE_VALUES {
     DEUCE,
     ADVANTAGE,
     WIN;
+
+    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle("score_values");
 
     public SCORE_VALUES next() {
         SCORE_VALUES[] values = SCORE_VALUES.values();
@@ -18,5 +22,9 @@ public enum SCORE_VALUES {
             nextOrdinal = (this.ordinal() + 1) % values.length;
         }
         return values[nextOrdinal];
+    }
+
+    public String toString() {
+        return resourceBundle.getString(this.name());
     }
 }
