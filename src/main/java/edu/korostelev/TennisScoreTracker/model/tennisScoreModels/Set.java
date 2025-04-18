@@ -50,7 +50,7 @@ public class Set implements Winnable {
 
     private Optional<Player> checkWinningConditions() {
         Optional<Player> winner = Optional.empty();
-        int difference = firstPlayerScore - secondPlayerScore;
+        int difference = Math.abs(firstPlayerScore - secondPlayerScore);
 
         // Match is won only when there's a difference between players scores => check for that condition first
         if (firstPlayerScore != secondPlayerScore) {
@@ -68,5 +68,17 @@ public class Set implements Winnable {
         }
 
         return winner;
+    }
+
+    public int getFirstPlayerScore() {
+        return firstPlayerScore;
+    }
+
+    public int getSecondPlayerScore() {
+        return secondPlayerScore;
+    }
+
+    public Game getCurrentGame() {
+        return currentGame;
     }
 }
