@@ -18,7 +18,6 @@ public class CurrentMatchesService {
         this.playersService = playersService;
     }
 
-    //TODO implement generation of unique id for matches
     public UUID createMatch(String firstPlayerName, String secondPlayerName) {
         Optional<Player> firstPlayer = playersService.findByName(firstPlayerName);
         Optional<Player> secondPlayer = playersService.findByName(secondPlayerName);
