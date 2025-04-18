@@ -41,10 +41,10 @@ public class CurrentMatch implements Winnable {
                     return Optional.of(firstPlayer);
                 }
             } else if (setWinner.get().equals(secondPlayer)) {
+                secondPlayerScore++;
                 if (secondPlayerScore == SETS_TO_WIN) {
                     return Optional.of(secondPlayer);
                 }
-                secondPlayerScore++;
             }
 
             startSet();
