@@ -52,4 +52,12 @@ public class CurrentMatch implements Winnable {
 
         return Optional.empty();
     }
+
+    public Player getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    public Player getSecondPlayer() {
+        return secondPlayer;
+    }
 }
