@@ -26,7 +26,7 @@ public class SetTests {
     }
 
     @Test
-    public void normalSet() {
+    public void normalSetFirstPlayerWins() {
         init();
         playOneGame(set, firstPlayer);
         playOneGame(set, firstPlayer);
@@ -106,5 +106,16 @@ public class SetTests {
         set.winnedBy(winner);
         set.winnedBy(winner);
         return set.winnedBy(winner);
+    }
+
+    @Test
+    public void normalSetSecondPlayerWins() {
+        init();
+        playOneGame(set, secondPlayer);
+        playOneGame(set, secondPlayer);
+        playOneGame(set, secondPlayer);
+        playOneGame(set, secondPlayer);
+        playOneGame(set, secondPlayer);
+        Assertions.assertEquals(secondPlayer, playOneGame(set, secondPlayer).get());
     }
 }

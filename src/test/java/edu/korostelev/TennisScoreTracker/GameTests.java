@@ -22,7 +22,7 @@ public class GameTests {
     }
 
     @Test
-    public void normalGame() {
+    public void normalGameFirstPlayerWins() {
         init();
         testGame.winnedBy(firstPlayer);
         testGame.winnedBy(firstPlayer);
@@ -31,7 +31,7 @@ public class GameTests {
     }
 
     @Test
-    public void tieGame() {
+    public void tieGameFirstPlayerWins() {
         init();
         testGame.winnedBy(firstPlayer);
         testGame.winnedBy(firstPlayer);
@@ -46,7 +46,7 @@ public class GameTests {
     }
 
     @Test
-    public void prolongedTieGame() {
+    public void prolongedTieGameFirstPlayerWins() {
         init();
 
         // first player get up to 40
@@ -66,5 +66,14 @@ public class GameTests {
         // first player gets final advantage
         testGame.winnedBy(firstPlayer);
         Assertions.assertEquals(firstPlayer, testGame.winnedBy(firstPlayer).get());
+    }
+
+    @Test
+    public void normalGameSecondPlayerWins() {
+        init();
+        testGame.winnedBy(secondPlayer);
+        testGame.winnedBy(secondPlayer);
+        testGame.winnedBy(secondPlayer);
+        Assertions.assertEquals(secondPlayer, testGame.winnedBy(secondPlayer).get());
     }
 }
