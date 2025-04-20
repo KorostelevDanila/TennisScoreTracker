@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    background-color: #F1EFEC;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    background-color: #123458;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    background-color: #030303;
+    color: #D4C9BE;
+}
+
+a {
+    color: #D4C9BE;
+    text-decoration: none;
+}
+
+.wrapper {
+    margin: 0;
+    padding-left: 5vh;
+    padding-right: 5vh;
+}
+
+.site-information {
+    width: fit-content;
+    margin: 15vh auto 5vh;
+    padding: 1vh;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #D4C9BE;
+}
+
+.application-name {
+    margin: 2vh;
+    font-size: 5vh;
+    font-weight: 800;
+}
+
+.application-description {
+    margin: 2vh;
+    font-weight: 200;
+    font-size: 3vh;
+}
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.redirect-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    background-color: #123458;
+    border-radius: 10px;
+    padding-left: 10vh;
+    padding-right: 10vh;
+}
