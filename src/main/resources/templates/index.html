@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Tennis Score Tracker</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    </head>
-
-    <body>
-        <h1>Добро пожаловать на Теннисную Таблицу</h1>
-        <p>Управляйте теннисными матчами, подсчитывайте результаты и просматривайте уже сыгранные матчи</p>
-
-        <div>
-            <a href="/new-match">
-                <button>Начать новую игру</button>
-            </a>
-            <button>Посмотреть сыгранные матчи</button>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tennis Scoreboard Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header class="container">
+        <div class="wrapper">
+            <nav>
+                <a href="#">Home</a>
+            </nav>
         </div>
-    </body>
+    </header>
+    <main class="container">
+        <div class="wrapper">
+            <div class="site-information">
+                <h1 class="application-name">Welcome to Tennis Score Tracking Application</h1>
+                <h2 class="application-description">Create, track and save results of tennis matches</h2>
+            </div>
 
+            <div class="buttons-container">
+                <a class="redirect-button" th:href="@{/new-match}">Create new match</a>
+                <a class="redirect-button" th:href="@{/matches}">Show completed matches</a>
+            </div>
+        </div>
+    </main>
+    <footer class="container">
+        <div class="wrapper">
+            <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
+        </div>
+    </footer>
+</body>
 </html>

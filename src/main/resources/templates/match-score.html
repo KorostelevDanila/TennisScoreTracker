@@ -1,21 +1,50 @@
 <!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-  <title>Create Match</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
+    <title>Tennis Scoreboard Tracker</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-
 <body>
-<h1>Текущий матч</h1>
+    <header class="container">
+        <nav>
+            <a href="#">Home</a>
+        </nav>
+    </header>
+    <main class="container">
+        <h1>Current match</h1>
 
-<div>
-  <div>
-    <p>идентификатор матча: <p th:text="${uuid}">идентификатор</p> </p>
-    <p>Имя первого игрока: <p th:text="${firstPlayer.name}">имя</p> </p>
-    <p>Имя второго игрока: <p th:text="${secondPlayer.name}">имя</p> </p>
-  </div>
-</div>
+        <section>
+            <div class="player-match-information">
+                <label class="player-name">First Player Name</label>
+                <span>---</span>
+                <label class="player-name">Second Player Name</label>
+            </div>
+
+            <div class="match-period-container">
+                <label class="set-label">Set Score</label>
+                <div class="score-container">
+                    <span>0</span>
+                    <span>1</span>
+                </div>
+            </div>
+
+            <div class="match-period-container">
+                <label>Game</label>
+                <div class="score-container">
+                    <span>0</span>
+                    <span>15</span>
+                </div>
+            </div>
+        </section>
+
+        <form action="" method="post">
+            <button type="submit" value="">First Player Won</button>
+            <button type="submit" value="First Player Won">Second Player Won</button>
+        </form>
+    </main>
+    <footer class="container">
+        <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
+    </footer>
 </body>
-
 </html>
