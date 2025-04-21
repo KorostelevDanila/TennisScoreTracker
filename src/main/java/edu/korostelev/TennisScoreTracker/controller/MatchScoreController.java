@@ -29,14 +29,10 @@ public class MatchScoreController {
             @RequestParam("uuid") String uuid,
             ModelMap modelMap
     ) {
-        CurrentMatch currentMatch = currentMatchesService.getCurrentMatch(UUID.fromString(uuid));
-        Optional<Player> firstPlayer = playersService.findById(currentMatch.getFirstPlayer().getId());
-        Optional<Player> secondPlayer = playersService.findById(currentMatch.getSecondPlayer().getId());
+        MatchInformation matchInformation = matchInformationService.getMatchInformation(uuid);
 
         modelMap.addAttribute("uuid", uuid);
-        modelMap.addAttribute("match", currentMatch);
-        firstPlayer.ifPresent(player -> modelMap.addAttribute("firstPlayer", player));
-        secondPlayer.ifPresent(player -> modelMap.addAttribute("secondPlayer", player));
+        modelMap.addAttribute("matchInformation", matchInformation);
 
         return "match-score";
     }
