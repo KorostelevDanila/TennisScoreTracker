@@ -1,6 +1,7 @@
 package edu.korostelev.TennisScoreTracker.model.tennisScoreModels;
 
 import edu.korostelev.TennisScoreTracker.model.Player;
+import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.enums.SCORE_VALUES;
 import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.interfaces.Winnable;
 
 import java.util.Optional;
@@ -60,7 +61,7 @@ public class Set implements Winnable {
                 if (difference >= 2){
                     if (firstPlayerScore > secondPlayerScore) {
                         winner = Optional.of(firstPlayer);
-                    } else {
+                    } else if (secondPlayerScore > firstPlayerScore) {
                         winner = Optional.of(secondPlayer);
                     }
                 }
@@ -76,6 +77,14 @@ public class Set implements Winnable {
 
     public int getSecondPlayerScore() {
         return secondPlayerScore;
+    }
+
+    public String getFirstPlayerGameScore() {
+        return currentGame.getFirstPlayerScore().toString();
+    }
+
+    public String getSecondPlayerGameScore() {
+        return currentGame.getSecondPlayerScore().toString();
     }
 
     public Game getCurrentGame() {

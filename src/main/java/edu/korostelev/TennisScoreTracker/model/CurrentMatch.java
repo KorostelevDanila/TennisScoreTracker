@@ -1,5 +1,6 @@
 package edu.korostelev.TennisScoreTracker.model;
 
+import edu.korostelev.TennisScoreTracker.dto.PlayerMatchInformation;
 import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.Set;
 import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.interfaces.Winnable;
 import lombok.Data;
@@ -51,6 +52,34 @@ public class CurrentMatch implements Winnable {
         }
 
         return Optional.empty();
+    }
+
+//    public HashMap<String, String> getCurrentScore() {
+//        HashMap<String, String> currentScoreInformation = new HashMap<>();
+//
+//    }
+
+    public PlayerMatchInformation getPlayerInformation(Player player) {
+        Integer id = 0;
+        String name = null;
+        String matchScore = null;
+        String setScore = null;
+        String gameScore = null;
+        if (player.equals(firstPlayer)) {
+            id = firstPlayer.getId();
+            name = firstPlayer.getName();
+            matchScore = Integer.toString(firstPlayerScore);
+            setScore = Integer.toString(currentSet.getFirstPlayerScore());
+            gameScore = currentSet.getFirstPlayerGameScore();
+        } else if (player.equals(secondPlayer)) {
+            id = secondPlayer.getId();
+            name = secondPlayer.getName();
+            matchScore = Integer.toString(secondPlayerScore);
+            setScore = Integer.toString(currentSet.getSecondPlayerScore());
+            gameScore = currentSet.getSecondPlayerGameScore();
+        }
+
+        return new PlayerMatchInformation(id, name, matchScore, setScore, gameScore);
     }
 
     public Player getFirstPlayer() {

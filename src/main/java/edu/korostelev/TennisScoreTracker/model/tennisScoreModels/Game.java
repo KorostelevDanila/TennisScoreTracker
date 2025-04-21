@@ -9,6 +9,7 @@ import java.util.Optional;
 public class Game implements Winnable {
     private final Player firstPlayer;
     private final Player secondPlayer;
+    private Player gameWinner;
 
     private SCORE_VALUES firstPlayerScore;
     private SCORE_VALUES secondPlayerScore;
@@ -22,9 +23,10 @@ public class Game implements Winnable {
 
     @Override
     public Optional<Player> winnedBy(Player winner) {
-        checkTieSituations();
 
         addScoreToWinner(winner);
+
+        checkTieSituations();
 
         checkDeuceSituation();
 
@@ -64,6 +66,18 @@ public class Game implements Winnable {
         } else {
             return Optional.empty();
         }
+    }
+
+    private void setGameWinner(Player player) {
+        this.gameWinner = player;
+    }
+
+    public SCORE_VALUES getFirstPlayerScore() {
+        return firstPlayerScore;
+    }
+
+    public SCORE_VALUES getSecondPlayerScore() {
+        return secondPlayerScore;
     }
 }
 
