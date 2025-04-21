@@ -16,31 +16,40 @@
 
         <section>
             <div class="player-match-information">
-                <label class="player-name" th:text="${firstPlayer.name}">First Player Name</label>
+                <label class="player-name" th:text="${matchInformation.firstPlayer.name}">First Player Name</label>
                 <span>---</span>
-                <label class="player-name" th:text="${secondPlayer.name}">Second Player Name</label>
+                <label class="player-name" th:text="${matchInformation.secondPlayer.name}">Second Player Name</label>
+            </div>
+
+            <div class="match-period-container">
+                <label class="match-label">Match Score</label>
+                <div class="score-container">
+                    <span th:text="${matchInformation.firstPlayer.matchScore}">0</span>
+                    <span th:text="${matchInformation.secondPlayer.matchScore}">1</span>
+                </div>
             </div>
 
             <div class="match-period-container">
                 <label class="set-label">Set Score</label>
                 <div class="score-container">
-                    <span>0</span>
-                    <span>1</span>
+                    <span th:text="${matchInformation.firstPlayer.setScore}">0</span>
+                    <span th:text="${matchInformation.secondPlayer.setScore}">1</span>
                 </div>
             </div>
 
             <div class="match-period-container">
                 <label>Game</label>
                 <div class="score-container">
-                    <span>0</span>
-                    <span>15</span>
+                    <span th:text="${matchInformation.firstPlayer.gameScore}">0</span>
+                    <span th:text="${matchInformation.secondPlayer.gameScore}">15</span>
                 </div>
             </div>
         </section>
 
-        <form action="#" method="post">
-            <button type="submit" name="winner" th:value="${firstPlayer.id}">First Player Won</button>
-            <button type="submit" name="winner" th:value="${secondPlayer.id}">Second Player Won</button>
+        <form action="/match-score" method="post">
+            <button type="submit" name="winner" th:value="${matchInformation.firstPlayer.id}">First Player Won</button>
+            <button type="submit" name="winner" th:value="${matchInformation.secondPlayer.id}">Second Player Won</button>
+            <input type="hidden" th:name="uuid" th:value="${uuid}">
         </form>
     </main>
     <footer class="container">
