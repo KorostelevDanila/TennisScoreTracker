@@ -1,7 +1,6 @@
 package edu.korostelev.TennisScoreTracker.controller;
 
 import edu.korostelev.TennisScoreTracker.dto.MatchInformation;
-import edu.korostelev.TennisScoreTracker.model.CurrentMatch;
 import edu.korostelev.TennisScoreTracker.model.Player;
 import edu.korostelev.TennisScoreTracker.service.CurrentMatchesService;
 import edu.korostelev.TennisScoreTracker.service.MatchInformationService;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/match-score")

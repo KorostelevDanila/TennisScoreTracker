@@ -3,11 +3,7 @@ package edu.korostelev.TennisScoreTracker.model;
 import edu.korostelev.TennisScoreTracker.dto.PlayerMatchInformation;
 import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.Set;
 import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.interfaces.Winnable;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-import java.util.HashMap;
 import java.util.Optional;
 
 public class CurrentMatch implements Winnable {
@@ -53,11 +49,6 @@ public class CurrentMatch implements Winnable {
 
         return Optional.empty();
     }
-
-//    public HashMap<String, String> getCurrentScore() {
-//        HashMap<String, String> currentScoreInformation = new HashMap<>();
-//
-//    }
 
     public PlayerMatchInformation getPlayerInformation(Player player) {
         Integer id = 0;

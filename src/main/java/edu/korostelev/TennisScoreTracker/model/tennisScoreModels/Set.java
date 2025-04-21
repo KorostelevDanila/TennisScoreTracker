@@ -1,7 +1,6 @@
 package edu.korostelev.TennisScoreTracker.model.tennisScoreModels;
 
 import edu.korostelev.TennisScoreTracker.model.Player;
-import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.enums.SCORE_VALUES;
 import edu.korostelev.TennisScoreTracker.model.tennisScoreModels.interfaces.Winnable;
 
 import java.util.Optional;

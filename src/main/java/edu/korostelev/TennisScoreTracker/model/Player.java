@@ -2,9 +2,6 @@ package edu.korostelev.TennisScoreTracker.model;
 
 import jakarta.persistence.*;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.Objects;
 
 @Entity

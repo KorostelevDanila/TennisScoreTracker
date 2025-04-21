@@ -1,10 +1,5 @@
 package edu.korostelev.TennisScoreTracker.dto;
 
-import edu.korostelev.TennisScoreTracker.model.Player;
-import edu.korostelev.TennisScoreTracker.util.MATCH_INFORMATION_KEYS;
-
-import java.util.HashMap;
-
 public class MatchInformation {
     private PlayerMatchInformation firstPlayer;
     private PlayerMatchInformation secondPlayer;

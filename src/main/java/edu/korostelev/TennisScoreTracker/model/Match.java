@@ -1,8 +1,6 @@
 package edu.korostelev.TennisScoreTracker.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(schema = "tennis-scoreboard", name = "completed-matches")

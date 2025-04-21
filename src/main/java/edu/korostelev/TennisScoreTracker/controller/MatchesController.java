@@ -2,7 +2,6 @@ package edu.korostelev.TennisScoreTracker.controller;
 
 import edu.korostelev.TennisScoreTracker.model.Match;
 import edu.korostelev.TennisScoreTracker.repository.MatchesRepository;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;

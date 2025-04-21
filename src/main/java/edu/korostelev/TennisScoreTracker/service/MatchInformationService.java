@@ -3,11 +3,7 @@ package edu.korostelev.TennisScoreTracker.service;
 import edu.korostelev.TennisScoreTracker.dto.MatchInformation;
 import edu.korostelev.TennisScoreTracker.dto.PlayerMatchInformation;
 import edu.korostelev.TennisScoreTracker.model.CurrentMatch;
-import edu.korostelev.TennisScoreTracker.util.MATCH_INFORMATION_KEYS;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.UUID;
 
 @Service
 public class MatchInformationService {
