@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Tennis Scoreboard Tracker</title>
@@ -20,22 +20,20 @@
                     <th>ID</th>
                     <th>First Player Name</th>
                     <th>Second Player Name</th>
+                    <th>Winner</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr th:each="match : ${matches}" th:unless="${#lists.isEmpty(matches)}">
+                    <td th:text="${match.id}">0</td>
+                    <td th:text="${match.firstPlayer.name}">Danila</td>
+                    <td th:text="${match.secondPlayer.name}">Sasha</td>
+                    <td th:text="${match.winner.name}">Sasha</td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(matches)}">
                     <td>0</td>
                     <td>Danila</td>
                     <td>Sasha</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Danila</td>
-                    <td>Sasha</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Danila</td>
                     <td>Sasha</td>
                 </tr>
             </tbody>

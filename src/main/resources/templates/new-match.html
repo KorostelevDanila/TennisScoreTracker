@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Tennis Scoreboard Tracker</title>
@@ -14,7 +14,7 @@
     <main class="container">
         <h1>Create new match</h1>
 
-        <form action="" method="post" name="create_match_form">
+        <form method="post" th:action="@{/new-match}" name="create_match_form">
             <p>
                 <label>First Player Name</label>
                 <input type="text" name="firstPlayerName">

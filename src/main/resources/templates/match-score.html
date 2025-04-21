@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Tennis Scoreboard Tracker</title>
@@ -16,9 +16,9 @@
 
         <section>
             <div class="player-match-information">
-                <label class="player-name">First Player Name</label>
+                <label class="player-name" th:text="${firstPlayer.name}">First Player Name</label>
                 <span>---</span>
-                <label class="player-name">Second Player Name</label>
+                <label class="player-name" th:text="${secondPlayer.name}">Second Player Name</label>
             </div>
 
             <div class="match-period-container">
@@ -38,9 +38,9 @@
             </div>
         </section>
 
-        <form action="" method="post">
-            <button type="submit" value="">First Player Won</button>
-            <button type="submit" value="First Player Won">Second Player Won</button>
+        <form action="#" method="post">
+            <button type="submit" name="winner" th:value="${firstPlayer.id}">First Player Won</button>
+            <button type="submit" name="winner" th:value="${secondPlayer.id}">Second Player Won</button>
         </form>
     </main>
     <footer class="container">
