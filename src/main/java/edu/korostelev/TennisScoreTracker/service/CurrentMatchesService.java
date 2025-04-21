@@ -18,6 +18,19 @@ public class CurrentMatchesService {
         this.playersService = playersService;
     }
 
+    public Optional<Player> addScore(String currentMatchId, int winnerId) {
+        CurrentMatch currentMatch = matches.get(UUID.fromString(currentMatchId));
+
+        Optional<Player> winner = playersService.findById(winnerId);
+        Optional<Player> matchWinner = Optional.empty();
+
+        if (winner.isPresent()) {
+            matchWinner = currentMatch.winnedBy(winner.get());
+        }
+
+        return matchWinner;
+    }
+
     public UUID createMatch(String firstPlayerName, String secondPlayerName) {
         Optional<Player> firstPlayer = playersService.findByName(firstPlayerName);
         Optional<Player> secondPlayer = playersService.findByName(secondPlayerName);
@@ -42,7 +55,7 @@ public class CurrentMatchesService {
         return matchId;
     }
 
-    public CurrentMatch getCurrentMatch(UUID currentMatchId) {
-        return matches.get(currentMatchId);
+    public CurrentMatch getCurrentMatch(String currentMatchId) {
+        return matches.get(UUID.fromString(currentMatchId));
     }
 }
