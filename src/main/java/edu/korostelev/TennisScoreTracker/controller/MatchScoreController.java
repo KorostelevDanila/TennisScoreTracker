@@ -32,7 +32,7 @@ public class MatchScoreController {
             @RequestParam("uuid") String uuid,
             ModelMap modelMap
     ) {
-        MatchInformation matchInformation = matchInformationService.getMatchInformation(uuid);
+        MatchInformation matchInformation = matchInformationService.getMatchInformation(currentMatchesService.getCurrentMatch(uuid));
 
         modelMap.addAttribute("uuid", uuid);
         modelMap.addAttribute("matchInformation", matchInformation);
@@ -46,14 +46,9 @@ public class MatchScoreController {
             @RequestParam("winner") Integer winnerId,
             ModelMap modelMap
     ) {
-        Optional<Player> matchWinner = currentMatchesService.addScore(uuid, winnerId);
+        Optional<MatchInformation> matchInformation = currentMatchesService.addScore(uuid, winnerId);
 
-        if (matchWinner.isPresent()) {
-            modelMap.addAttribute("winnerName", matchWinner.get().getName());
-            // TODO Win logic
-        }
-
-        modelMap.addAttribute("matchInformation", matchInformationService.getMatchInformation(uuid));
+        matchInformation.ifPresent(information -> modelMap.addAttribute("matchInformation", information));
 
         modelMap.addAttribute("uuid", uuid);
 

@@ -46,11 +46,15 @@
             </div>
         </section>
 
-        <form action="/match-score" method="post">
+        <form action="/match-score" method="post" th:unless="${matchInformation.winnerName}">
             <button type="submit" name="winner" th:value="${matchInformation.firstPlayer.id}">First Player Won</button>
             <button type="submit" name="winner" th:value="${matchInformation.secondPlayer.id}">Second Player Won</button>
             <input type="hidden" th:name="uuid" th:value="${uuid}">
         </form>
+
+        <div th:if="${matchInformation.winnerName}">
+            <p>Победитель - <span th:text="${matchInformation.winnerName}">Winner</span></p>
+        </div>
     </main>
     <footer class="container">
         <section class="copyright-description">Korostelev Danila, personal project, 2025</section>

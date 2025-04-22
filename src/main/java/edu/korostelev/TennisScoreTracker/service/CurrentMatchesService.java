@@ -1,5 +1,6 @@
 package edu.korostelev.TennisScoreTracker.service;
 
+import edu.korostelev.TennisScoreTracker.dto.MatchInformation;
 import edu.korostelev.TennisScoreTracker.model.CurrentMatch;
 import edu.korostelev.TennisScoreTracker.model.Player;
 import org.springframework.stereotype.Service;
@@ -13,22 +14,35 @@ public class CurrentMatchesService {
     private final HashMap<UUID, CurrentMatch> matches = new HashMap<>();
 
     private final PlayersService playersService;
+    private final MatchesService matchesService;
+    private final MatchInformationService matchInformationService;
 
-    public CurrentMatchesService(PlayersService playersService) {
+    public CurrentMatchesService(PlayersService playersService, MatchesService matchesService, MatchInformationService matchInformationService) {
         this.playersService = playersService;
+        this.matchesService = matchesService;
+        this.matchInformationService = matchInformationService;
     }
 
-    public Optional<Player> addScore(String currentMatchId, int winnerId) {
+    public Optional<MatchInformation> addScore(String currentMatchId, int winnerId) {
         CurrentMatch currentMatch = matches.get(UUID.fromString(currentMatchId));
 
         Optional<Player> winner = playersService.findById(winnerId);
         Optional<Player> matchWinner = Optional.empty();
 
+        Optional<MatchInformation> matchInformation = Optional.empty();
+
         if (winner.isPresent()) {
             matchWinner = currentMatch.winnedBy(winner.get());
+            if (matchWinner.isPresent()) {
+                matchesService.save(currentMatch.getFirstPlayer().getId(), currentMatch.getSecondPlayer().getId(), matchWinner.get().getId());
+                matchInformation = Optional.of(matchInformationService.getMatchInformation(currentMatch, matchWinner.get()));
+                matches.remove(UUID.fromString(currentMatchId));
+            } else {
+                matchInformation = Optional.of(matchInformationService.getMatchInformation(currentMatch));
+            }
         }
 
-        return matchWinner;
+        return matchInformation;
     }
 
     public UUID createMatch(String firstPlayerName, String secondPlayerName) {
