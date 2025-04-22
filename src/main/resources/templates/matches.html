@@ -38,6 +38,12 @@
                 </tr>
             </tbody>
         </table>
+
+        <nav class="matches-table-navigation">
+            <a th:if="${hasPrevious}" th:text="${currentPage - 1}" th:href="@{'/matches?page=' + ${currentPage - 1}}">previous</a>
+            <a th:text="${currentPage}">current</a>
+            <a th:if="${hasNext}" th:text="${currentPage + 1}" th:href="@{'/matches?page=' + ${currentPage + 1}}">next</a>
+        </nav>
     </main>
     <footer class="container">
         <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
