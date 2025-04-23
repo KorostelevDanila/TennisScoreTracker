@@ -7,29 +7,35 @@
 </head>
 <body>
     <header class="container">
-        <nav>
-            <a href="#">Home</a>
-        </nav>
+        <div class="wrapper">
+            <nav>
+                <a href="#">Home</a>
+            </nav>
+        </div>
     </header>
     <main class="container">
-        <h1>Create new match</h1>
+        <div class="wrapper">
+            <h1>Create new match</h1>
 
-        <form method="post" th:action="@{/new-match}" name="create_match_form">
-            <p>
-                <label>First Player Name</label>
-                <input type="text" name="firstPlayerName">
-            </p>
+            <form method="post" th:action="@{/new-match}" name="create_match_form">
+                <p>
+                    <label>First Player Name</label>
+                    <input type="text" name="firstPlayerName">
+                </p>
 
-            <p>
-                <label>Second Player Name</label>
-                <input type="text" name="secondPlayerName">
-            </p>
+                <p>
+                    <label>Second Player Name</label>
+                    <input type="text" name="secondPlayerName">
+                </p>
 
-            <input type="submit" value="Create match">
-        </form>
+                <input type="submit" value="Create match">
+            </form>
+        </div>
     </main>
     <footer class="container">
-        <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
+        <div class="wrapper">
+            <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
+        </div>
     </footer>
 </body>
 </html>

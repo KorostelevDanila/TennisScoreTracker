@@ -7,57 +7,63 @@
 </head>
 <body>
     <header class="container">
-        <nav>
-            <a href="#">Home</a>
-        </nav>
+        <div class="wrapper">
+            <nav>
+                <a href="#">Home</a>
+            </nav>
+        </div>
     </header>
     <main class="container">
-        <h1>Current match</h1>
+        <div class="wrapper">
+            <h1>Current match</h1>
 
-        <section>
-            <div class="player-match-information">
-                <label class="player-name" th:text="${matchInformation.firstPlayer.name}">First Player Name</label>
-                <span>---</span>
-                <label class="player-name" th:text="${matchInformation.secondPlayer.name}">Second Player Name</label>
-            </div>
-
-            <div class="match-period-container">
-                <label class="match-label">Match Score</label>
-                <div class="score-container">
-                    <span th:text="${matchInformation.firstPlayer.matchScore}">0</span>
-                    <span th:text="${matchInformation.secondPlayer.matchScore}">1</span>
+            <section>
+                <div class="player-match-information">
+                    <label class="player-name" th:text="${matchInformation.firstPlayer.name}">First Player Name</label>
+                    <span>---</span>
+                    <label class="player-name" th:text="${matchInformation.secondPlayer.name}">Second Player Name</label>
                 </div>
-            </div>
 
-            <div class="match-period-container">
-                <label class="set-label">Set Score</label>
-                <div class="score-container">
-                    <span th:text="${matchInformation.firstPlayer.setScore}">0</span>
-                    <span th:text="${matchInformation.secondPlayer.setScore}">1</span>
+                <div class="match-period-container">
+                    <label class="match-label">Match Score</label>
+                    <div class="score-container">
+                        <span th:text="${matchInformation.firstPlayer.matchScore}">0</span>
+                        <span th:text="${matchInformation.secondPlayer.matchScore}">1</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="match-period-container">
-                <label>Game</label>
-                <div class="score-container">
-                    <span th:text="${matchInformation.firstPlayer.gameScore}">0</span>
-                    <span th:text="${matchInformation.secondPlayer.gameScore}">15</span>
+                <div class="match-period-container">
+                    <label class="set-label">Set Score</label>
+                    <div class="score-container">
+                        <span th:text="${matchInformation.firstPlayer.setScore}">0</span>
+                        <span th:text="${matchInformation.secondPlayer.setScore}">1</span>
+                    </div>
                 </div>
+
+                <div class="match-period-container">
+                    <label>Game</label>
+                    <div class="score-container">
+                        <span th:text="${matchInformation.firstPlayer.gameScore}">0</span>
+                        <span th:text="${matchInformation.secondPlayer.gameScore}">15</span>
+                    </div>
+                </div>
+            </section>
+
+            <form action="/match-score" method="post" th:unless="${matchInformation.winnerName}">
+                <button type="submit" name="winner" th:value="${matchInformation.firstPlayer.id}">First Player Won</button>
+                <button type="submit" name="winner" th:value="${matchInformation.secondPlayer.id}">Second Player Won</button>
+                <input type="hidden" th:name="uuid" th:value="${uuid}">
+            </form>
+
+            <div th:if="${matchInformation.winnerName}">
+                <p>Победитель - <span th:text="${matchInformation.winnerName}">Winner</span></p>
             </div>
-        </section>
-
-        <form action="/match-score" method="post" th:unless="${matchInformation.winnerName}">
-            <button type="submit" name="winner" th:value="${matchInformation.firstPlayer.id}">First Player Won</button>
-            <button type="submit" name="winner" th:value="${matchInformation.secondPlayer.id}">Second Player Won</button>
-            <input type="hidden" th:name="uuid" th:value="${uuid}">
-        </form>
-
-        <div th:if="${matchInformation.winnerName}">
-            <p>Победитель - <span th:text="${matchInformation.winnerName}">Winner</span></p>
         </div>
     </main>
     <footer class="container">
-        <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
+        <div class="wrapper">
+            <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
+        </div>
     </footer>
 </body>
 </html>

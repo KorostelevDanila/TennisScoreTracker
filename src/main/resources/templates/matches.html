@@ -7,12 +7,15 @@
 </head>
 <body>
     <header class="container">
-        <nav>
-            <a href="#">Home</a>
-        </nav>
+        <div class="wrapper">
+            <nav>
+                <a href="#">Home</a>
+            </nav>
+        </div>
     </header>
     <main class="container">
-        <h1>Completed Matches</h1>
+        <div class="wrapper">
+            <h1>Completed Matches</h1>
 
             <form th:action="@{/matches}" method="get">
                 <input type="text" name="playerName">
@@ -51,7 +54,9 @@
 
     </main>
     <footer class="container">
-        <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
+        <div class="wrapper">
+            <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
+        </div>
     </footer>
 </body>
 </html>
