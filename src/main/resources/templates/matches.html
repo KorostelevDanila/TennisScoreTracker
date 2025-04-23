@@ -14,36 +14,41 @@
     <main class="container">
         <h1>Completed Matches</h1>
 
-        <table>
-            <thead>
+            <form th:action="@{/matches}" method="get">
+                <input type="text" name="playerName">
+                <button type="submit">Filter by name</button>
+            </form>
+
+            <div th:if="${#lists.isEmpty(matches)}">
+                <span>Unfortunately, no matches was found. Check player name or try again later</span>
+            </div>
+
+            <table th:unless="${#lists.isEmpty(matches)}">
+                <thead>
                 <tr>
                     <th>ID</th>
                     <th>First Player Name</th>
                     <th>Second Player Name</th>
                     <th>Winner</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr th:each="match : ${matches}" th:unless="${#lists.isEmpty(matches)}">
                     <td th:text="${match.id}">0</td>
                     <td th:text="${match.firstPlayer.name}">Danila</td>
                     <td th:text="${match.secondPlayer.name}">Sasha</td>
                     <td th:text="${match.winner.name}">Sasha</td>
                 </tr>
-                <tr th:if="${#lists.isEmpty(matches)}">
-                    <td>0</td>
-                    <td>Danila</td>
-                    <td>Sasha</td>
-                    <td>Sasha</td>
-                </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-        <nav class="matches-table-navigation">
-            <a th:if="${hasPrevious}" th:text="${currentPage - 1}" th:href="@{'/matches?page=' + ${currentPage - 1}}">previous</a>
-            <a th:text="${currentPage}">current</a>
-            <a th:if="${hasNext}" th:text="${currentPage + 1}" th:href="@{'/matches?page=' + ${currentPage + 1}}">next</a>
-        </nav>
+            <nav class="matches-table-navigation">
+                <a th:if="${hasPrevious}" th:text="${currentPage - 1}" th:href="@{'/matches?page=' + ${currentPage - 1} + ${playerNameFilter != null ? '&playerName=' + playerNameFilter : ''}} ">previous</a>
+                <a th:text="${currentPage}">current</a>
+                <a th:if="${hasNext}" th:text="${currentPage + 1}" th:href="@{'/matches?page=' + ${currentPage + 1} + ${playerNameFilter != null ? '&playerName=' + playerNameFilter : ''}}">next</a>
+            </nav>
+        </div>
+
     </main>
     <footer class="container">
         <section class="copyright-description">Korostelev Danila, personal project, 2025</section>
