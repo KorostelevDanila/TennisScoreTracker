@@ -4,6 +4,7 @@ import edu.korostelev.TennisScoreTracker.model.Match;
 import edu.korostelev.TennisScoreTracker.model.Player;
 import edu.korostelev.TennisScoreTracker.repository.MatchesRepository;
 import edu.korostelev.TennisScoreTracker.repository.PlayersRepository;
+import edu.korostelev.TennisScoreTracker.service.MatchesService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -17,12 +18,10 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/matches")
 public class MatchesController {
-    private final MatchesRepository matchesRepository;
-    private final PlayersRepository playersRepository;
+    private final MatchesService matchesService;
 
-    public MatchesController(MatchesRepository matchesRepository, PlayersRepository playersRepository) {
-        this.matchesRepository = matchesRepository;
-        this.playersRepository = playersRepository;
+    public MatchesController(MatchesRepository matchesRepository, PlayersRepository playersRepository, MatchesService matchesService) {
+        this.matchesService = matchesService;
     }
 
     @GetMapping
@@ -30,22 +29,7 @@ public class MatchesController {
             @RequestParam(required = false, defaultValue = "1") String page,
             @RequestParam(required = false) String playerName,
             ModelMap modelMap) {
-        Page<Match> allMatches = null;
-        if (playerName == null) {
-            allMatches = matchesRepository.findAll(PageRequest.of((Integer.parseInt(page) - 1), 5));
-        } else {
-            Optional<Player> player = playersRepository.findByName(playerName);
-            if (player.isPresent()) {
-                allMatches = matchesRepository.findMatchesByFirstPlayerOrSecondPlayer(player.get(), player.get(), PageRequest.of((Integer.parseInt(page) - 1), 5));
-            } else {
-                if (playerName.isEmpty()) {
-                    allMatches = matchesRepository.findAll(PageRequest.of((Integer.parseInt(page) - 1), 5));
-                    playerName = null;
-                } else {
-                    allMatches = Page.empty();
-                }
-            }
-        }
+        Page<Match> allMatches = matchesService.getAllMatches(page, playerName);
 
         modelMap.addAttribute("matches", allMatches.getContent());
         modelMap.addAttribute("currentPage", allMatches.getNumber() + 1);

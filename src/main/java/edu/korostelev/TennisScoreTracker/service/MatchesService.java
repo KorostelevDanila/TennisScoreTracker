@@ -4,8 +4,11 @@ import edu.korostelev.TennisScoreTracker.model.Match;
 import edu.korostelev.TennisScoreTracker.model.Player;
 import edu.korostelev.TennisScoreTracker.repository.MatchesRepository;
 import edu.korostelev.TennisScoreTracker.repository.PlayersRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +32,21 @@ public class MatchesService {
         }
 
         return savedMatch;
+    }
+
+    public Page<Match> getAllMatches(String page, String playerName) {
+        Page<Match> allMatches = null;
+        if (playerName.isEmpty()) {
+            allMatches = matchesRepository.findAll(PageRequest.of((Integer.parseInt(page) - 1), 5));
+        } else {
+            Optional<Player> player = playersRepository.findByName(playerName);
+            if (player.isPresent()) {
+                allMatches = matchesRepository.findMatchesByFirstPlayerOrSecondPlayer(player.get(), player.get(), PageRequest.of((Integer.parseInt(page) - 1), 5));
+            } else {
+                allMatches = Page.empty();
+            }
+        }
+
+        return allMatches;
     }
 }
