@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tennis Scoreboard Tracker</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <header class="container">
@@ -18,17 +18,17 @@
             <h1>Create new match</h1>
 
             <form method="post" th:action="@{/new-match}" name="create_match_form">
-                <p>
-                    <label>First Player Name</label>
-                    <input type="text" name="firstPlayerName">
+                <p class="player-name-input">
+                    <label class="player-name">First Player Name</label>
+                    <input class="text-input" type="text" name="firstPlayerName">
                 </p>
 
-                <p>
-                    <label>Second Player Name</label>
-                    <input type="text" name="secondPlayerName">
+                <p class="player-name-input">
+                    <label class="player-name">Second Player Name</label>
+                    <input class="text-input" type="text" name="secondPlayerName">
                 </p>
 
-                <input type="submit" value="Create match">
+                <input class="post-match-button" type="submit" value="Create match">
             </form>
         </div>
     </main>
