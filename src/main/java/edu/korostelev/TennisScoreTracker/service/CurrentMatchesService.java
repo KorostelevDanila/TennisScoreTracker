@@ -27,7 +27,7 @@ public class CurrentMatchesService {
         CurrentMatch currentMatch = matches.get(UUID.fromString(currentMatchId));
 
         Optional<Player> winner = playersService.findById(winnerId);
-        Optional<Player> matchWinner = Optional.empty();
+        Optional<Player> matchWinner;
 
         Optional<MatchInformation> matchInformation = Optional.empty();
 

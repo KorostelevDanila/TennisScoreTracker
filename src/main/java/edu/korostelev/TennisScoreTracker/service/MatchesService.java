@@ -36,7 +36,10 @@ public class MatchesService {
 
     public Page<Match> getAllMatches(String page, String playerName) {
         Page<Match> allMatches = null;
-        if (playerName.isEmpty()) {
+
+        if (playerName == null) {
+            allMatches = matchesRepository.findAll(PageRequest.of((Integer.parseInt(page) - 1), 5));
+        } else if (playerName.isEmpty()) {
             allMatches = matchesRepository.findAll(PageRequest.of((Integer.parseInt(page) - 1), 5));
         } else {
             Optional<Player> player = playersRepository.findByName(playerName);
