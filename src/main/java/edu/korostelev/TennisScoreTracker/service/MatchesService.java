@@ -4,6 +4,7 @@ import edu.korostelev.TennisScoreTracker.model.Match;
 import edu.korostelev.TennisScoreTracker.model.Player;
 import edu.korostelev.TennisScoreTracker.repository.MatchesRepository;
 import edu.korostelev.TennisScoreTracker.repository.PlayersRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

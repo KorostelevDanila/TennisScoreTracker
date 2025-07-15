@@ -1,7 +1,6 @@
 package edu.korostelev.TennisScoreTracker.controller;
 
 import edu.korostelev.TennisScoreTracker.dto.MatchInformation;
-import edu.korostelev.TennisScoreTracker.model.Player;
 import edu.korostelev.TennisScoreTracker.service.CurrentMatchesService;
 import edu.korostelev.TennisScoreTracker.service.MatchInformationService;
 import edu.korostelev.TennisScoreTracker.service.PlayersService;
